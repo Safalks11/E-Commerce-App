@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/features/home/widgets/product_error_widget.dart';
+import 'package:e_commerce_app/features/home/widgets/products_shimmer_effect.dart';
 import 'package:flutter/material.dart';
-
+import '../../../app/theme/app_theme.dart';
 import '../../../core/models/product_model.dart';
 
 class ProductCard extends StatefulWidget {
@@ -15,11 +18,15 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
+    final product = widget.product;
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: Colors.grey.shade200),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -34,9 +41,15 @@ class _ProductCardState extends State<ProductCard> {
                 children: [
                   Container(
                     height: 160,
+                    padding: EdgeInsets.all(10),
                     width: double.infinity,
                     decoration: BoxDecoration(color: Colors.grey.shade200),
-                    child: Image(image: NetworkImage(widget.product.image)),
+                    child: CachedNetworkImage(
+                      imageUrl: product.image,
+                      fit: BoxFit.contain,
+                      placeholder: (context, url) => buildProductImageShimmer(),
+                      errorWidget: (context, url, error) => productErrorWidget(),
+                    ),
                   ),
                   // Price badge
                   Positioned(
@@ -44,13 +57,17 @@ class _ProductCardState extends State<ProductCard> {
                     right: 12,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(14)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        color: Colors.green,
+                      ),
                       child: Text(
                         '\$${widget.product.price.toStringAsFixed(2)}',
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.2,
+                          color: AppColors.onPrimaryColor,
                         ),
                       ),
                     ),
@@ -73,7 +90,6 @@ class _ProductCardState extends State<ProductCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Product Title
                   Text(
                     widget.product.title,
                     style: theme.textTheme.bodyLarge?.copyWith(
@@ -103,7 +119,7 @@ class _ProductCardState extends State<ProductCard> {
                             const SizedBox(width: 2),
                             Text(
                               '${widget.product.rating.rate}',
-                              style: theme.textTheme.bodyMedium?.copyWith(
+                              style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.orange.shade700,
@@ -113,10 +129,7 @@ class _ProductCardState extends State<ProductCard> {
                         ),
                       ),
                       const SizedBox(width: 6),
-                      Text(
-                        '(${widget.product.rating.count})',
-                        style: theme.textTheme.bodyMedium?.copyWith(fontSize: 12),
-                      ),
+                      Text('(${widget.product.rating.count})', style: TextStyle(fontSize: 12)),
                     ],
                   ),
                 ],

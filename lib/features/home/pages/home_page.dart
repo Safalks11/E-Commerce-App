@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
       appBar: CustomAppBar(onLogoutPressed: () {}, title: 'Home', leading: Icon(Icons.menu)),
       body: Obx(() {
         if (productController.isLoading.value) {

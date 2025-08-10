@@ -23,8 +23,6 @@ class ProductDetailPage extends StatelessWidget {
             onPressed: () {},
           ),
         ],
-        shadowColor: Colors.indigo.withValues(alpha: 0.3),
-        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 120),

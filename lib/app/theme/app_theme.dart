@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primaryColor = Colors.black;
+  static const Color onPrimaryColor = Colors.white;
   static const Color scaffoldBackgroundColor = Colors.white;
 }
 
@@ -12,6 +13,7 @@ ThemeData appTheme = ThemeData(
     backgroundColor: Colors.white,
     foregroundColor: Colors.black,
     elevation: 0,
+    scrolledUnderElevation: 0,
     titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
