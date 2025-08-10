@@ -3,7 +3,7 @@
 Simple Flutter E Commerce App
 
 
-**Features**
+**Features:**
 User login with API authentication
 
 Product list with pull-to-refresh
@@ -12,7 +12,7 @@ Show empty state image when no products
 
 Single product detail view
 
-**Tech**
+**Tech:**
 Flutter
 
 GetX state management
