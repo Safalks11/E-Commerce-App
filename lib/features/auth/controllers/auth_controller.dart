@@ -39,4 +39,9 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<void> logout() async {
+    await _storage.delete(key: 'api_token');
+    Get.offAllNamed(AppRoutes.login);
+  }
 }
