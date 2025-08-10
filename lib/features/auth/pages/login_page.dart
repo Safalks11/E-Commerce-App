@@ -18,8 +18,8 @@ class LoginPage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              AppColor.primaryColor.withValues(alpha: 0.1),
-              AppColor.scaffoldBackgroundColor,
+              AppColors.primaryColor.withValues(alpha: 0.1),
+              AppColors.scaffoldBackgroundColor,
             ],
           ),
         ),
@@ -37,11 +37,11 @@ class LoginPage extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: AppColor.primaryColor.withValues(alpha: 0.15),
+                          color: AppColors.primaryColor.withValues(alpha: 0.15),
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: AppColor.primaryColor.withValues(alpha: 0.2),
+                              color: AppColors.primaryColor.withValues(alpha: 0.2),
                               blurRadius: 20,
                               offset: const Offset(0, 8),
                             ),
@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
                         child: Icon(
                           Icons.shopping_bag_rounded,
                           size: 60,
-                          color: AppColor.primaryColor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.w800,
-                          color: AppColor.primaryColor,
+                          color: AppColors.primaryColor,
                           letterSpacing: -0.5,
                         ),
                       ),
@@ -77,7 +77,7 @@ class LoginPage extends StatelessWidget {
                   key: controller.formKey,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: AppColor.scaffoldBackgroundColor,
+                      color: AppColors.scaffoldBackgroundColor,
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
