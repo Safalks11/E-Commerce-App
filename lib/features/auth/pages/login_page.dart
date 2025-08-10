@@ -2,7 +2,6 @@ import 'package:e_commerce_app/app/theme/app_theme.dart';
 import 'package:e_commerce_app/features/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../app/routes/route_name.dart';
 
 class LoginPage extends StatelessWidget {
   final AuthController controller = Get.put(AuthController());
@@ -136,21 +135,69 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 32),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 56,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (controller.formKey.currentState!.validate()) {
-                                  Get.offNamed(AppRoutes.home);
-                                }
-                              },
+                          Obx(
+                            () => SizedBox(
+                              width: double.infinity,
+                              height: 56,
+                              child: ElevatedButton(
+                                onPressed: controller.isLoading.value
+                                    ? null
+                                    : () {
+                                        if (controller.formKey.currentState!.validate()) {
+                                          controller.login();
+                                        }
+                                      },
 
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                                child: controller.isLoading.value
+                                    ? const SizedBox(
+                                        height: 24,
+                                        width: 24,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.5,
+                                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                        ),
+                                      )
+                                    : const Text(
+                                        'Login',
+                                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                                      ),
                               ),
                             ),
+                          ),
+                          Obx(
+                            () => controller.errorMessage.value.isNotEmpty
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(16),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red.shade50,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(color: Colors.red.shade200),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.error_outline_rounded,
+                                            color: Colors.red.shade600,
+                                            size: 20,
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: Text(
+                                              controller.errorMessage.value,
+                                              style: TextStyle(
+                                                color: Colors.red.shade700,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox.shrink(),
                           ),
                         ],
                       ),
