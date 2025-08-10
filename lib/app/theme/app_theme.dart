@@ -43,4 +43,9 @@ ThemeData appTheme = ThemeData(
       borderSide: const BorderSide(color: Colors.black, width: 2),
     ),
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: Colors.black,
+    foregroundColor: Colors.white,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+  ),
 );

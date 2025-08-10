@@ -6,6 +6,7 @@ import 'package:e_commerce_app/features/home/pages/product_detail_page.dart';
 import 'package:get/get.dart';
 
 import '../../features/auth/controllers/auth_controller.dart';
+import '../../features/home/controllers/product_controller.dart';
 
 class AppPages {
   static final routes = [
@@ -17,7 +18,13 @@ class AppPages {
         Get.lazyPut<AuthController>(() => AuthController());
       }),
     ),
-    GetPage(name: AppRoutes.home, page: () => HomePage()),
+    GetPage(
+      name: AppRoutes.home,
+      page: () => HomePage(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ProductController>(() => ProductController());
+      }),
+    ),
     GetPage(name: AppRoutes.productDetail, page: () => ProductDetailPage()),
   ];
 }

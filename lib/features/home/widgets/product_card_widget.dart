@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/models/product_model.dart';
+
 class ProductCard extends StatefulWidget {
   final VoidCallback onTap;
+  final Product product;
 
-  const ProductCard({super.key, required this.onTap});
+  const ProductCard({super.key, required this.onTap, required this.product});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -33,7 +36,7 @@ class _ProductCardState extends State<ProductCard> {
                     height: 160,
                     width: double.infinity,
                     decoration: BoxDecoration(color: Colors.grey.shade200),
-                    child: Icon(Icons.image, size: 50),
+                    child: Image(image: NetworkImage(widget.product.image)),
                   ),
                   // Price badge
                   Positioned(
@@ -43,7 +46,7 @@ class _ProductCardState extends State<ProductCard> {
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(14)),
                       child: Text(
-                        '\$${250.00}',
+                        '\$${widget.product.price.toStringAsFixed(2)}',
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
@@ -52,7 +55,6 @@ class _ProductCardState extends State<ProductCard> {
                       ),
                     ),
                   ),
-                  // Favorite button
                   Positioned(
                     top: 12,
                     left: 12,
@@ -65,7 +67,6 @@ class _ProductCardState extends State<ProductCard> {
                 ],
               ),
             ),
-            // Product Info
             Padding(
               padding: const EdgeInsets.all(18),
               child: Column(
@@ -74,7 +75,7 @@ class _ProductCardState extends State<ProductCard> {
                 children: [
                   // Product Title
                   Text(
-                    'title',
+                    widget.product.title,
                     style: theme.textTheme.bodyLarge?.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -101,7 +102,7 @@ class _ProductCardState extends State<ProductCard> {
                             Icon(Icons.star_rounded, size: 13, color: Colors.orange.shade600),
                             const SizedBox(width: 2),
                             Text(
-                              '${3.5}',
+                              '${widget.product.rating.rate}',
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
@@ -112,7 +113,10 @@ class _ProductCardState extends State<ProductCard> {
                         ),
                       ),
                       const SizedBox(width: 6),
-                      Text('(${256})', style: theme.textTheme.bodyMedium?.copyWith(fontSize: 12)),
+                      Text(
+                        '(${widget.product.rating.count})',
+                        style: theme.textTheme.bodyMedium?.copyWith(fontSize: 12),
+                      ),
                     ],
                   ),
                 ],
