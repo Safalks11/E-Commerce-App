@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/home/controllers/product_controller.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

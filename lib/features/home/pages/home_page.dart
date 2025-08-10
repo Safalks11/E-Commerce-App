@@ -4,6 +4,8 @@ import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/logout_confirmation_sheet.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../controllers/product_controller.dart';
+import '../widgets/empty_state_widget.dart';
+import '../widgets/error_display_widget.dart';
 import '../widgets/products_grid_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +27,16 @@ class HomePage extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
 
+        if (productController.errorMessage.value.isNotEmpty) {
+          return ErrorDisplayWidget(
+            errorMessage: productController.errorMessage.value,
+            onRetry: () => productController.fetchProducts(),
+          );
+        }
+
+        if (productController.products.isEmpty) {
+          return EmptyState(onRefresh: () => productController.fetchProducts());
+        }
         return RefreshIndicator(
           onRefresh: () => productController.fetchProducts(),
           child: Column(
