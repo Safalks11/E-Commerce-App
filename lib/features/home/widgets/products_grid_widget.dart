@@ -2,6 +2,8 @@ import 'package:e_commerce_app/features/home/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../app/routes/route_name.dart';
+
 class ProductsGridWidget extends StatelessWidget {
   const ProductsGridWidget({super.key});
 
@@ -17,7 +19,11 @@ class ProductsGridWidget extends StatelessWidget {
       ),
       itemCount: 10,
       itemBuilder: (context, index) {
-        return ProductCard(onTap: () {});
+        return ProductCard(
+          onTap: () {
+            Get.toNamed(AppRoutes.productDetail);
+          },
+        );
       },
     );
   }
