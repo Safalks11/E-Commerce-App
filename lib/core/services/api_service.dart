@@ -41,4 +41,20 @@ class ApiService {
       throw Exception('Network error: $e');
     }
   }
+
+  // Get single product
+  static Future<Product> getProduct(int id) async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/products/$id'));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return Product.fromJson(data);
+      } else {
+        throw Exception('Failed to load product');
+      }
+    } catch (e) {
+      throw Exception('Network error: $e');
+    }
+  }
 }

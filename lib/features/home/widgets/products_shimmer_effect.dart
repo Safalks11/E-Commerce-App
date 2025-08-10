@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-Widget buildProductImageShimmer() {
+Widget buildProductImageShimmer({required double height}) {
   return Shimmer.fromColors(
     baseColor: Colors.grey.shade300,
     highlightColor: Colors.grey.shade100,
     period: const Duration(milliseconds: 1200),
     child: Container(
-      height: 160,
+      height: height,
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(

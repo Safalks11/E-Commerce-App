@@ -47,7 +47,7 @@ class _ProductCardState extends State<ProductCard> {
                     child: CachedNetworkImage(
                       imageUrl: product.image,
                       fit: BoxFit.contain,
-                      placeholder: (context, url) => buildProductImageShimmer(),
+                      placeholder: (context, url) => buildProductImageShimmer(height: 160),
                       errorWidget: (context, url, error) => productErrorWidget(),
                     ),
                   ),

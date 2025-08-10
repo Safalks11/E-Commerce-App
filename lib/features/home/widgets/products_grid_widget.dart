@@ -28,6 +28,7 @@ class ProductsGridWidget extends StatelessWidget {
           return ProductCard(
             product: product,
             onTap: () {
+              controller.fetchProductDetail(product.id);
               Get.toNamed(AppRoutes.productDetail);
             },
           );
