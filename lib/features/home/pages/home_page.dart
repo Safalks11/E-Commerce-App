@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Obx(() {
         if (productController.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: RepaintBoundary(child: CircularProgressIndicator()));
         }
 
         if (productController.errorMessage.value.isNotEmpty) {

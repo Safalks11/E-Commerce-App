@@ -27,11 +27,11 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.shopping_cart, size: 100, color: Colors.blueAccent),
+            Icon(Icons.shopping_cart, size: 100, color: Colors.black),
             SizedBox(height: 20),
             Text(
               'E-Commerce App',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87),
             ),
             SizedBox(height: 10),
             Text(

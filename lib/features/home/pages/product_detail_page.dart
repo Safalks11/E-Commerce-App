@@ -33,7 +33,7 @@ class ProductDetailPage extends StatelessWidget {
       ),
       body: Obx(() {
         if (controller.isDetailsLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: RepaintBoundary(child: CircularProgressIndicator()));
         }
         final product = controller.selectedProduct.value;
 
